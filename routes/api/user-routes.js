@@ -4,7 +4,11 @@ const router = require('express').Router();
 const {
     getUsers,
     getOneUser,
-    createUser
+    createUser,
+    updateUser,
+    deleteUser,
+    addFriend,
+    deleteFriend
 } = require("../../controllers/user-controller")
 
 //TODO - ROUTE THAT GETS ALL THE USERS, include friends?
@@ -14,31 +18,17 @@ router.route("/")
     .post(createUser)
 
 //TODO - ROUTE THAT GETS A SINGLE USER BASED ON USER ID
+//TODO - ROUTE THAT UPDATES A SINGLE USER
+//TODO - ROUTE THAT DELETES A SINGLE USER BASED ON USER ID
 router.route("/:id")
     .get(getOneUser)
-
-router.get('/:userId', (req,res) => {
-
-})
-
-//TODO - ROUTE THAT UPDATES A SINGLE USER
-router.put('/:userId', (req,res)=> {
-
-})
-
-//TODO - ROUTE THAT DELETES A SINGLE USER BASED ON USER ID
-router.delete('/:userId', (req,res)=> {
-
-});
+    .put(updateUser)
+    .delete(deleteUser)
 
 //TODO - ROUTE THAT ADDS A FRIEND TO A USER
-router.put('/:userId/friends/:friendId', (req,res)=> {
-
-})
-
 //TODO - ROUTE THAT DELETES A FRIEND FROM A USER'S FRIENDS, DONT DELETE THE FRIEND AS A USER THOUGH!
-router.delete('/:userId/friends/:friendId', (req,res)=> {
-  
-});
+router.route("/:id/friends/:friendId")
+    .post(addFriend)
+    .delete(deleteFriend)
 
 module.exports = router;
