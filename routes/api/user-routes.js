@@ -1,18 +1,22 @@
 
 const router = require('express').Router();
-const {User} = require("../../models")
+// const {User} = require("../../models") moved to controller
+const {
+    getUsers,
+    getOneUser,
+    createUser
+} = require("../../controllers/user-controller")
 
 //TODO - ROUTE THAT GETS ALL THE USERS, include friends?
-router.get('/', (req,res)=> {
-
-})
-
 //TODO - ROUTE THAT CREATES A NEW USER
-router.post('/', (req,res)=> {
-
-});
+router.route("/")
+    .get(getUsers)
+    .post(createUser)
 
 //TODO - ROUTE THAT GETS A SINGLE USER BASED ON USER ID
+router.route("/:id")
+    .get(getOneUser)
+
 router.get('/:userId', (req,res) => {
 
 })
